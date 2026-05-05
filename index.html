@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CounterApp</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#eceef0",
+                    "outline": "#737686",
+                    "primary-container": "#2563eb",
+                    "on-background": "#191c1e",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "on-surface": "#191c1e",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#54647a",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-secondary-fixed": "#0b1c30",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#360f00",
+                    "error-container": "#ffdad6",
+                    "surface": "#f7f9fb",
+                    "on-primary-fixed": "#00174b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#eeefff",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-dim": "#d8dadc",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-variant": "#e0e3e5",
+                    "surface-bright": "#f7f9fb",
+                    "tertiary-fixed": "#ffdbcd",
+                    "background": "#f7f9fb",
+                    "inverse-surface": "#2d3133",
+                    "on-surface-variant": "#434655",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "surface-tint": "#0053db",
+                    "outline-variant": "#c3c6d7",
+                    "tertiary-container": "#bc4800",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#d0e1fb",
+                    "on-tertiary-container": "#ffede6",
+                    "inverse-primary": "#b4c5ff",
+                    "primary": "#004ac6",
+                    "tertiary": "#943700",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "secondary": "#505f76"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "xs": "4px",
+                    "gutter": "16px",
+                    "container-margin": "24px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "xl": "40px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "h1": ["Inter"],
+                    "h2": ["Inter"],
+                    "h3": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h3": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline docked full-width top-0 flex justify-between items-center w-full px-container-margin py-md z-50">
+<div class="font-h3 text-h3 font-semibold text-on-surface dark:text-inverse-on-surface">CounterApp</div>
+<div class="flex items-center gap-md">
+<button id="settingsBtn" class="p-sm rounded-full text-on-surface-variant hover:bg-surface-container dark:hover:bg-secondary transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center p-container-margin">
+<div class="w-full max-w-sm flex flex-col items-center gap-xl">
+<!-- Counter Display Section -->
+<div class="relative flex flex-col items-center justify-center py-xl px-xl w-full">
+<!-- Large Bold Counter -->
+<span id="counterDisplay" class="text-[120px] font-extrabold tracking-tighter leading-none text-primary select-none">
+                    0
+                </span>
+<span class="font-label-md text-label-md text-outline mt-md">CURRENT COUNT</span>
+</div>
+<!-- Controls Section -->
+<div class="flex items-center justify-center gap-lg w-full">
+<!-- Decrement Button -->
+<button id="decrementBtn" class="group flex flex-col items-center justify-center gap-xs">
+<div class="w-16 h-16 border-2 border-outline-variant flex items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary hover:bg-surface-container-lowest transition-all duration-200 rounded-[9999px] cursor-pointer">
+<span class="material-symbols-outlined text-[32px]" data-icon="remove">remove</span>
+</div>
+</button>
+<!-- Increment Button -->
+<button id="incrementBtn" class="group flex flex-col items-center justify-center gap-xs">
+<div class="w-20 h-20 bg-primary flex items-center justify-center text-on-primary shadow-lg hover:bg-surface-tint hover:scale-105 active:scale-95 transition-all duration-200 rounded-[9999px] cursor-pointer">
+<span class="material-symbols-outlined text-[40px]" data-icon="add">add</span>
+</div>
+</button>
+</div>
+<!-- Decorative Visual for Minimalist Style (Bento style hint) -->
+<div class="mt-xl grid grid-cols-2 gap-md w-full opacity-50">
+<div class="h-1 bg-outline-variant rounded-full w-full"></div>
+<div class="h-1 bg-outline-variant rounded-full w-full"></div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline fixed bottom-0 w-full z-50 flex justify-around items-center w-full h-16">
+<!-- Counter Tab (Active) -->
+<button id="counterTab" class="counter-tab active flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold transition-transform duration-150 scale-95 hover:bg-surface-container-low dark:hover:bg-secondary-fixed-dim rounded-lg px-md py-xs bg-transparent border-none cursor-pointer">
+<span class="material-symbols-outlined" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-label-sm text-label-sm">Counter</span>
+</button>
+<!-- History Tab (Inactive) -->
+<button id="historyTab" class="history-tab flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant transition-transform duration-150 scale-95 hover:bg-surface-container-low dark:hover:bg-secondary-fixed-dim rounded-lg px-md py-xs bg-transparent border-none cursor-pointer">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</button>
+</nav>
+<!-- Empty Spacer for Bottom Nav -->
+<div class="h-16"></div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="fixed inset-0 bg-black/50 z-[100] hidden items-center justify-center">
+<div class="bg-surface dark:bg-inverse-surface rounded-xl p-lg w-full max-w-sm mx-4 shadow-xl">
+<div class="flex justify-between items-center mb-lg">
+<span class="font-h3 text-h3 font-semibold">Settings</span>
+<button id="closeSettingsBtn" class="p-sm rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<div class="space-y-md">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface">Step Size</span>
+<select id="stepSizeSelect" class="bg-surface-container-low border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md">
+<option value="1">1</option>
+<option value="5">5</option>
+<option value="10">10</option>
+</select>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface">Reset on Negative</span>
+<button id="resetToggle" class="w-12 h-6 rounded-full bg-surface-container-highest border border-outline-variant p-1 transition-colors">
+<div id="resetToggleKnob" class="w-4 h-4 bg-outline rounded-full transition-transform"></div>
+</button>
+</div>
+<button id="resetCounterBtn" class="w-full bg-error-container text-on-error-container font-label-md py-md rounded-lg hover:bg-error-container/80 transition-colors">
+Reset Counter
+</button>
+</div>
+</div>
+</div>
+
+<!-- History Panel (Hidden by default) -->
+<div id="historyPanel" class="hidden fixed inset-0 bg-surface z-[60] pt-20">
+<div class="p-container-margin">
+<div class="flex items-center gap-md mb-lg">
+<button id="backToCounter" class="p-sm rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<span class="font-h2 text-h2 font-semibold">History</span>
+</div>
+<div id="historyList" class="space-y-sm">
+<!-- History items will be dynamically added here -->
+</div>
+<div id="emptyHistory" class="text-center py-xl text-on-surface-variant">
+<span class="material-symbols-outlined text-[48px]">history</span>
+<p class="font-body-md mt-md">No history yet</p>
+</div>
+</div>
+</div>
+
+<script>
+    // State
+    let counter = 0;
+    let history = [];
+    let stepSize = 1;
+    let resetOnNegative = false;
+    let currentTab = 'counter';
+
+    // DOM Elements
+    const counterDisplay = document.getElementById('counterDisplay');
+    const incrementBtn = document.getElementById('incrementBtn');
+    const decrementBtn = document.getElementById('decrementBtn');
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsModal = document.getElementById('settingsModal');
+    const closeSettingsBtn = document.getElementById('closeSettingsBtn');
+    const stepSizeSelect = document.getElementById('stepSizeSelect');
+    const resetToggle = document.getElementById('resetToggle');
+    const resetToggleKnob = document.getElementById('resetToggleKnob');
+    const resetCounterBtn = document.getElementById('resetCounterBtn');
+    const counterTab = document.getElementById('counterTab');
+    const historyTab = document.getElementById('historyTab');
+    const historyPanel = document.getElementById('historyPanel');
+    const historyList = document.getElementById('historyList');
+    const emptyHistory = document.getElementById('emptyHistory');
+    const backToCounter = document.getElementById('backToCounter');
+
+    // Update display
+    function updateDisplay() {
+        counterDisplay.textContent = counter;
+    }
+
+    // Add to history
+    function addToHistory(action, value) {
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = { action, value, timestamp };
+        history.unshift(entry);
+        if (history.length > 50) history.pop();
+        renderHistory();
+    }
+
+    // Render history
+    function renderHistory() {
+        if (history.length === 0) {
+            historyList.innerHTML = '';
+            emptyHistory.classList.remove('hidden');
+            return;
+        }
+        emptyHistory.classList.add('hidden');
+        historyList.innerHTML = history.map((entry, index) => `
+            <div class="bg-surface-container-low p-md rounded-lg flex justify-between items-center">
+                <div class="flex items-center gap-md">
+                    <span class="material-symbols-outlined ${entry.action === 'increment' ? 'text-primary' : 'text-tertiary'}">
+                        ${entry.action === 'increment' ? 'add' : 'remove'}
+                    </span>
+                    <span class="font-body-md text-on-surface">${entry.action === 'increment' ? '+' : '-'}${entry.value}</span>
+                </div>
+                <span class="font-label-sm text-on-surface-variant">${entry.timestamp}</span>
+            </div>
+        `).join('');
+    }
+
+    // Increment
+    incrementBtn.addEventListener('click', () => {
+        counter += stepSize;
+        addToHistory('increment', stepSize);
+        updateDisplay();
+        counterDisplay.classList.add('scale-110');
+        setTimeout(() => counterDisplay.classList.remove('scale-110'), 150);
+    });
+
+    // Decrement
+    decrementBtn.addEventListener('click', () => {
+        counter -= stepSize;
+        if (resetOnNegative && counter < 0) {
+            counter = 0;
+        }
+        addToHistory('decrement', stepSize);
+        updateDisplay();
+        counterDisplay.classList.add('scale-110');
+        setTimeout(() => counterDisplay.classList.remove('scale-110'), 150);
+    });
+
+    // Settings Modal
+    settingsBtn.addEventListener('click', () => {
+        settingsModal.classList.remove('hidden');
+        settingsModal.classList.add('flex');
+    });
+
+    closeSettingsBtn.addEventListener('click', () => {
+        settingsModal.classList.add('hidden');
+        settingsModal.classList.remove('flex');
+    });
+
+    settingsModal.addEventListener('click', (e) => {
+        if (e.target === settingsModal) {
+            settingsModal.classList.add('hidden');
+            settingsModal.classList.remove('flex');
+        }
+    });
+
+    // Step Size
+    stepSizeSelect.addEventListener('change', (e) => {
+        stepSize = parseInt(e.target.value);
+    });
+
+    // Reset on Negative Toggle
+    resetToggle.addEventListener('click', () => {
+        resetOnNegative = !resetOnNegative;
+        resetToggleKnob.style.transform = resetOnNegative ? 'translateX(24px)' : 'translateX(0)';
+        resetToggle.classList.toggle('bg-primary', resetOnNegative);
+    });
+
+    // Reset Counter
+    resetCounterBtn.addEventListener('click', () => {
+        counter = 0;
+        updateDisplay();
+        settingsModal.classList.add('hidden');
+        settingsModal.classList.remove('flex');
+    });
+
+    // Tab Navigation
+    counterTab.addEventListener('click', () => {
+        currentTab = 'counter';
+        counterTab.classList.add('text-primary', 'dark:text-primary-fixed-dim', 'font-bold');
+        counterTab.classList.remove('text-on-surface-variant', 'dark:text-outline-variant');
+        historyTab.classList.remove('text-primary', 'dark:text-primary-fixed-dim', 'font-bold');
+        historyTab.classList.add('text-on-surface-variant', 'dark:text-outline-variant');
+        historyPanel.classList.add('hidden');
+    });
+
+    historyTab.addEventListener('click', () => {
+        currentTab = 'history';
+        historyTab.classList.add('text-primary', 'dark:text-primary-fixed-dim', 'font-bold');
+        historyTab.classList.remove('text-on-surface-variant', 'dark:text-outline-variant');
+        counterTab.classList.remove('text-primary', 'dark:text-primary-fixed-dim', 'font-bold');
+        counterTab.classList.add('text-on-surface-variant', 'dark:text-outline-variant');
+        historyPanel.classList.remove('hidden');
+        renderHistory();
+    });
+
+    backToCounter.addEventListener('click', () => {
+        counterTab.click();
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+        if (e.key === '=' || e.key === '+') {
+            incrementBtn.click();
+        } else if (e.key === '-') {
+            decrementBtn.click();
+        } else if (e.key === 'Escape') {
+            settingsModal.classList.add('hidden');
+            settingsModal.classList.remove('flex');
+            if (currentTab === 'history') counterTab.click();
+        }
+    });
+
+    // Initialize
+    updateDisplay();
+</script>
+</body></html>
